@@ -28,6 +28,8 @@ namespace SuperHeroe
             services.AddControllersWithViews();
 
             services.AddTransient<ISearch, SearchRepository>();
+            services.AddMvc();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

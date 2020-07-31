@@ -2,7 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+    <div class="text-center">
+        <h1 class="display-4">Busca Tu Heroe Favorito</h1>
+        <form class="navbar-form navbar-right" asp-controller="Heroe" asp-action="Search" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
+            </div>
+        </form>
+    </div>
+    <div>
+      
+
+    </div>
+

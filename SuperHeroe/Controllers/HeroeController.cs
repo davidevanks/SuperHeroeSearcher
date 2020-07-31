@@ -12,7 +12,7 @@ namespace SuperHeroe.Controllers
     {
         private readonly ISearch _search;
 
-        public HeroeController(ISearch Search, SearchRepository SearchRepository)
+        public HeroeController(ISearch SearchRepository)
         {
             _search = SearchRepository;
             
@@ -24,6 +24,17 @@ namespace SuperHeroe.Controllers
             
         }
 
+
+        public ViewResult Search(string searchString)
+        {
+
+            string test = searchString;
+
+            Task<ResponseSearch> Response;
+            Response = _search.Heroes(searchString);
+
+            return View();
+        }
 
     }
 }
