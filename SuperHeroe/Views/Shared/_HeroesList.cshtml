@@ -3,12 +3,16 @@
 @{
 }
 
+   
 
-    <div class="card" style="width: 200px;" >
-        <img class="card-img-top" height="150" width="50" src="@Model.Image.Url" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Name: @Model.Name</h5>
-            <p class="card-text">Gender: @Model.Appearance.Gender</p>
-            <a href="#" class="btn btn-primary">See Details</a>
+        <div class="card" style="width: 200px;">
+            <img class="card-img-top" height="150" width="50" src="@Model.Image.Url" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Name: @Model.Name</h5>
+                <p class="card-text">Gender: @Model.Appearance.Gender</p>
+                <a asp-controller="Heroe" asp-route-id="@Model.Id" asp-action="DetailsHeroes" class="btn btn-primary">See Details</a>
+              
+                
+            </div>
         </div>
-    </div>
+  

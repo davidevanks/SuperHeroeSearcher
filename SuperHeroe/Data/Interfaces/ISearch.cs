@@ -10,5 +10,7 @@ namespace SuperHeroe.Data.Interfaces
     {
         Task<ResponseSearch> Heroes(string ValueSearch);
 
+        Task<Heroe> HeroesDetails(int Id);
+
     }
 }

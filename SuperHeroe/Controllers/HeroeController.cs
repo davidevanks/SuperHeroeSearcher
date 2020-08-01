@@ -6,11 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using SuperHeroe.Data.Interfaces;
 using SuperHeroe.Data.Repositories;
 using SuperHeroe.Data.Models;
+using Microsoft.AspNetCore.Http;
+
 namespace SuperHeroe.Controllers
 {
     public class HeroeController : Controller
     {
         private readonly ISearch _search;
+        [BindProperty]
+        public Heroe Heroe { get; set; }
 
         public HeroeController(ISearch SearchRepository)
         {
@@ -18,22 +22,20 @@ namespace SuperHeroe.Controllers
             
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string ValueSearch)
         {
-            return View();
-            
+            return new RedirectToActionResult("Index", "Home", ValueSearch);
+
         }
 
-
-        public ViewResult Search(string searchString)
+        [HttpGet("character/{id}")]
+        public IActionResult DetailsHeroes(int Id)
         {
 
-            string test = searchString;
-
-            Task<ResponseSearch> Response;
-            Response = _search.Heroes(searchString);
-
-            return View("Index",Response);
+            Task<Heroe> Response;
+            Response = _search.HeroesDetails(Id);
+            Response.Result.ValueSearch = HttpContext.Session.GetString("searchString");
+            return View(Response);
         }
 
     }

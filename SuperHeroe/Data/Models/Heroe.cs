@@ -25,5 +25,6 @@ namespace SuperHeroe.Data.Models
 
         [JsonProperty("image")]
         public ImageUrl Image { get; set; }
+        public string ValueSearch { get; set; }
     }
 }

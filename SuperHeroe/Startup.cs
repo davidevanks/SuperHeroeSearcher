@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ namespace SuperHeroe
 {
     public class Startup
     {
+        private object routes;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,9 +31,16 @@ namespace SuperHeroe
             services.AddControllersWithViews();
 
             services.AddTransient<ISearch, SearchRepository>();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);//You can set Time   
+            });
             services.AddMvc();
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            
+           
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,15 +60,26 @@ namespace SuperHeroe
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+           
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+                //pattern: "{controller=Home}/{action=Index}/?searchString={id?}");
+                // pattern: "{controller=Home}/{action=Index}/{searchString?}");
+
+
             });
+
+
+
+
         }
     }
 }
