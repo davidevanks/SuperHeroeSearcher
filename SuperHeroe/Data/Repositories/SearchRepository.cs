@@ -19,7 +19,7 @@ namespace SuperHeroe.Data.Repositories
             using (var httpclient = new HttpClient())
             {
 
-                using (var response = httpclient.GetAsync("https://superheroapi.com/api/10221230922474980/search/{ValueSearch}"))
+                using (var response = httpclient.GetAsync("https://superheroapi.com/api/10221230922474980/search/"+ValueSearch))
                 {
                     string jsonResponse = await response.Result.Content.ReadAsStringAsync();
                     Heroes = JsonConvert.DeserializeObject<ResponseSearch>(jsonResponse);

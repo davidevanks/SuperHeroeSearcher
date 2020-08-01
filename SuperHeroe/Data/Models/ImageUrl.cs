@@ -8,7 +8,7 @@ namespace SuperHeroe.Data.Models
 {
     public class ImageUrl
     {
-        [JsonProperty("base")]
+        [JsonProperty("url")]
         public string Url { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Task<SuperHeroe.Data.Models.ResponseSearch>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -11,8 +13,11 @@
             </div>
         </form>
     </div>
-    <div>
-      
+    @*<div class="card-deck">*@
+      @foreach (var Heroe in Model.Result.ListHeroes)
+      {
+          <partial name="_HeroesList" model="Heroe" />
+      }
 
-    </div>
+    @*</div>*@
 

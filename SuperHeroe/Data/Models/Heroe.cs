@@ -13,17 +13,17 @@ namespace SuperHeroe.Data.Models
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("powerstats")]
-        public List<Powerstats> Powerstats { get; set; }
+        public Powerstats Powerstats { get; set; }
         [JsonProperty("biography")]
-        public List<Biography> Biography { get; set; }
+        public Biography Biography { get; set; }
         [JsonProperty("appearance")]
-        public List<Appearance> Appearance { get; set; }
+        public Appearance Appearance { get; set; }
         [JsonProperty("work")]
-        public List<Work> Work { get; set; }
+        public Work Work { get; set; }
         [JsonProperty("connections")]
-        public List<Connections> Connections { get; set; }
+        public Connections Connections { get; set; }
 
         [JsonProperty("image")]
-        public List<ImageUrl> Image { get; set; }
+        public ImageUrl Image { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SuperHeroe.Data.Interfaces;
+using SuperHeroe.Data.Models;
 using SuperHeroe.Models;
 
 namespace SuperHeroe.Controllers
@@ -12,15 +14,23 @@ namespace SuperHeroe.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ISearch _search;
 
-        public HomeController(ILogger<HomeController> logger)
+     
+
+        public HomeController(ILogger<HomeController> logger, ISearch SearchRepository)
         {
             _logger = logger;
+            _search = SearchRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+
+
+            Task<ResponseSearch> Response;
+            Response = _search.Heroes("batman");
+            return View(Response);
         }
 
         public IActionResult Privacy()

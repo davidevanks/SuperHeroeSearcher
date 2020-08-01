@@ -33,7 +33,7 @@ namespace SuperHeroe.Controllers
             Task<ResponseSearch> Response;
             Response = _search.Heroes(searchString);
 
-            return View();
+            return View("Index",Response);
         }
 
     }
