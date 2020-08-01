@@ -23,7 +23,7 @@ namespace SuperHeroe.Data.Repositories
                 {
                     string jsonResponse = await response.Result.Content.ReadAsStringAsync();
                     Heroes = JsonConvert.DeserializeObject<ResponseSearch>(jsonResponse);
-
+                    Heroes.ValueSearch = ValueSearch;
 
                 }
 

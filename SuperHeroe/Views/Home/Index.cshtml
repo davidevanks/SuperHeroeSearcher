@@ -5,19 +5,40 @@
 }
 
 
-    <div class="text-center">
-        <h1 class="display-4">Busca Tu Heroe Favorito</h1>
-        <form class="navbar-form navbar-right" asp-controller="Heroe" asp-action="Search" method="get">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
-            </div>
-        </form>
-    </div>
-    @*<div class="card-deck">*@
-      @foreach (var Heroe in Model.Result.ListHeroes)
-      {
-          <partial name="_HeroesList" model="Heroe" />
-      }
+<div class="text-center">
+    <h1 class="display-4">Look for your favorite Super Heroe</h1>
+    <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Index" method="get">
+        <div class="form-group">
+            <input type="text" required class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
+            <input type="submit" asp-controller="Home" asp-action="Index" value="Search" class="btn btn-primary form-control"/>
+        </div>
+    </form>
+</div>
+@*<div class="card-deck">*@
 
-    @*</div>*@
+@*@if (Model.Result.ListHeroes != null)*@
+@if (Model.Result.ValueSearch != null && Model.Result.ValueSearch != "")
+{
+
+    @if (Model.Result.MessageResponse == "success")
+    {
+        @foreach (var Heroe in Model.Result.ListHeroes)
+        {
+            <partial name="_HeroesList" model="Heroe" />
+
+        }
+     }
+     else if(Model.Result.MessageResponse == "error")
+     {
+               
+                    <div class="alert alert-danger" role="alert">
+                            @Model.Result.MessageError
+                    </div>
+    }
+
+}
+
+
+
+@*</div>*@
 

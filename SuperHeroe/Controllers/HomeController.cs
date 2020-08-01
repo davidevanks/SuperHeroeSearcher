@@ -24,13 +24,12 @@ namespace SuperHeroe.Controllers
             _search = SearchRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-
-
-            Task<ResponseSearch> Response;
-            Response = _search.Heroes("batman");
-            return View(Response);
+            ViewData["searchString"] = searchString;
+            Task<ResponseSearch> Heroes;
+            Heroes = _search.Heroes(searchString);
+            return View(Heroes);
         }
 
         public IActionResult Privacy()

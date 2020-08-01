@@ -16,5 +16,6 @@ namespace SuperHeroe.Data.Models
         public List<Heroe> ListHeroes { get; set; }
         [JsonProperty("error")]
         public string MessageError { get; set; }
+        public string ValueSearch { get; set; }
     }
 }
