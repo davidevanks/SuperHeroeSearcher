@@ -11,6 +11,12 @@ namespace SuperHeroe.Data.Repositories
 {
     public class SearchRepository: ISearch
     {
+        /// <summary>
+        /// Metodo que recibe el nombre del supervillano o superheroe, consume un api
+        ///publica y gratuita. Este metodo se utiliza para la implementación de la busqueda en la pantalla principal
+        /// </summary>
+        /// <param name="ValueSearch"></param>
+        /// <returns>Modelo con el response</returns>
 
        public async Task<ResponseSearch> Heroes(string ValueSearch)
         {
@@ -32,25 +38,6 @@ namespace SuperHeroe.Data.Repositories
             return Heroes;
         }
 
-        public async Task<Heroe> HeroesDetails(int Id)
-        {
-            Heroe HeroesDetails = new Heroe();
-
-            using (var httpclient = new HttpClient())
-            {
-
-                using (var response = httpclient.GetAsync($"https://www.superheroapi.com/api.php/10221230922474980/{Id}"))
-                {
-                    string jsonResponse = await response.Result.Content.ReadAsStringAsync();
-                    HeroesDetails = JsonConvert.DeserializeObject<Heroe>(jsonResponse);
-                   
-
-                }
-
-            }
-
-            return HeroesDetails;
-        }
-
+       
     }
 }

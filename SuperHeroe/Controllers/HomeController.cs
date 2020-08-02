@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using SuperHeroe.Data.Interfaces;
 using SuperHeroe.Data.Models;
@@ -15,27 +16,43 @@ namespace SuperHeroe.Controllers
     
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+       
         private readonly ISearch _search;
-
+        private readonly IMemoryCache _memoryCache;
      
 
-        public HomeController(ILogger<HomeController> logger, ISearch SearchRepository)
+        public HomeController( ISearch SearchRepository, IMemoryCache memoryCache)
         {
-            _logger = logger;
+         
             _search = SearchRepository;
+            _memoryCache = memoryCache;
         }
         
         public IActionResult Index(string searchString)
         {
+            var cacheKey = "";
+            searchString = searchString == null ? cacheKey = "" : cacheKey=searchString;
+            
             ViewData["searchString"] = searchString;
-            if(searchString!=null)
+            //Si el parametro de busqueda no esnulo
+            //if(searchString!=null)
+             HttpContext.Session.SetString("searchString", cacheKey);
+
+            if (!_memoryCache.TryGetValue(cacheKey,out Task<ResponseSearch> Heroes))
             {
-                HttpContext.Session.SetString("searchString", searchString);
+                Heroes = _search.Heroes(searchString);
+
+                var cacheExpirationsOptions =
+                    new MemoryCacheEntryOptions
+                    {
+                        AbsoluteExpiration = DateTime.Now.AddHours(1),
+                        Priority = CacheItemPriority.Normal,
+                        SlidingExpiration=TimeSpan.FromMinutes(10)
+                    };
+
+                _memoryCache.Set(cacheKey, Heroes, cacheExpirationsOptions);
             }
            
-            Task<ResponseSearch> Heroes;
-            Heroes = _search.Heroes(searchString);
             return View(Heroes);
         }
 

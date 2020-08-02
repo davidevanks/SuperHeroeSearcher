@@ -8,10 +8,16 @@ namespace SuperHeroe.Controllers
 {
     public class ErrorController : Controller
     {
+        /// <summary>
+        /// Controlador que entraliza los errores para mostrar la página not found. Se hace una configuración en el
+        /// Startup.cs. 
+        /// </summary>
+        /// <param name="statusCode"></param>
+        /// <returns></returns>
         [Route("Error/{statusCode}")]
         public IActionResult HttStatusCodeHandler(int statusCode)
         {
-
+            
             switch(statusCode)
             {
 

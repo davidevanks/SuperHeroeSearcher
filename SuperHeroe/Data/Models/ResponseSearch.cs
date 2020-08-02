@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SuperHeroe.Data.Models
 {
+    /// <summary>
+    /// Clase utilizada para recibir el response.
+    /// </summary>
     public class ResponseSearch
     {
         [JsonProperty("response")]

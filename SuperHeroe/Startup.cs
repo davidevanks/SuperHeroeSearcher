@@ -29,18 +29,21 @@ namespace SuperHeroe
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            //Se registran los servicios a consumir en los controladores. Su referencia viene de la carpeta DATA
             services.AddTransient<ISearch, SearchRepository>();
-
+            services.AddTransient<IDetailsRepository, DetailsHeroeRepository>();
+            //Se establece la duración de la sesión  
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(10);//You can set Time   
+                options.IdleTimeout = TimeSpan.FromMinutes(10);   
             });
             services.AddMvc();
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             
-           
+           //Se registro para usar sesiones
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //Se registro servicio para implementar cache system en netcore
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,19 +55,18 @@ namespace SuperHeroe
             }
             else
             {
-                //app.UseExceptionHandler("/Home/Error");
-                //app.UseExceptionHandler("/Shared/_NotFound");
+               //Configuración realizada para centralizar los errores y mostrar pagina not found. 
+               //La otra parte de la lógica implementada esta en el ErrorController y se cambio 
                 app.UseStatusCodePagesWithRedirects("/Error/{0}");
-                //app.UseHsts();
+               
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
             
-           
-
             app.UseAuthorization();
+            //Se registro para usar sesiones en los controladores
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
@@ -72,10 +74,7 @@ namespace SuperHeroe
                 endpoints.MapControllerRoute(
                     name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-                //pattern: "{controller=Home}/{action=Index}/?searchString={id?}");
-                // pattern: "{controller=Home}/{action=Index}/{searchString?}");
-
-
+            
             });
 
 

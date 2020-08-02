@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SuperHeroe.Data.Interfaces
 {
-   public interface ISearch
+    public interface IDetailsRepository
     {
-      public  Task<ResponseSearch> Heroes(string ValueSearch);
-
+        public Task<Heroe> HeroesDetails(int Id);
     }
 }
