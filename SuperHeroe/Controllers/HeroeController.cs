@@ -35,6 +35,13 @@ namespace SuperHeroe.Controllers
             Task<Heroe> Response;
             Response = _search.HeroesDetails(Id);
             Response.Result.ValueSearch = HttpContext.Session.GetString("searchString");
+
+            if(Response.Result.Id ==null)
+            {
+                ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found!";
+                ViewBag.ErrorHeader = "HEROE O VILLANO NOT FOUND";
+                return View("_NotFound");
+            }
             return View(Response);
         }
 

@@ -25,12 +25,15 @@ namespace SuperHeroe.Controllers
             _logger = logger;
             _search = SearchRepository;
         }
-        //[HttpGet]
-        //[Route("Index/{q}")]
+        
         public IActionResult Index(string searchString)
         {
             ViewData["searchString"] = searchString;
-            HttpContext.Session.SetString("searchString", "ironman");
+            if(searchString!=null)
+            {
+                HttpContext.Session.SetString("searchString", searchString);
+            }
+           
             Task<ResponseSearch> Heroes;
             Heroes = _search.Heroes(searchString);
             return View(Heroes);
