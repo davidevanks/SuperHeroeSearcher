@@ -8,9 +8,9 @@ namespace SuperHeroe.Data.Interfaces
 {
    public interface ISearch
     {
-        Task<ResponseSearch> Heroes(string ValueSearch);
+      public  Task<ResponseSearch> Heroes(string ValueSearch);
 
-        Task<Heroe> HeroesDetails(int Id);
+       public Task<Heroe> HeroesDetails(int Id);
 
     }
 }
