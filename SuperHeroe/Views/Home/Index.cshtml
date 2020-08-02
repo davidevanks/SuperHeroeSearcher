@@ -5,16 +5,27 @@
 }
 
 
-<div class="text-center">
-    <h1 class="display-4">Look for your favorite Super Heroe or Villian</h1>
-    <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Index" method="get">
-        <div class="form-group">
-            <input type="text" required class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
-            <input type="submit" asp-controller="Home" asp-action="Index" value="Search" class="btn btn-primary form-control"/>
+    <div class="row">
+        <div class="col text-center">
+            <br />
+            <div class="alert alert-success" role="alert">
+                <h3>Look for your favorite Super Heroe or Villian</h3>
+            </div>
+            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Index" method="get">
+                <div class="form-group">
+                    <input type="text" required class="form-control" placeholder="Search for a SuperHeroe or Villian" name="searchString" value="@ViewData["searchString"]">
+
+                </div>
+
+                <input type="submit" asp-controller="Home" asp-action="Index" value="Search" class="btn btn-primary " />
+            </form>
+         
         </div>
-    </form>
-</div>
-@*<div class="card-deck">*@
+        
+    </div>
+<br />
+
+<div class="row">
 
 @*@if (Model.Result.ListHeroes != null)*@
 @if (Model.Result.ValueSearch != null && Model.Result.ValueSearch != "")
@@ -24,21 +35,26 @@
     {
         @foreach (var Heroe in Model.Result.ListHeroes)
         {
-            <partial name="_HeroesList" model="Heroe" />
+                        <partial name="_HeroesList" model="Heroe" />
+
+                  
+           
 
         }
      }
      else if(Model.Result.MessageResponse == "error")
      {
-               
-                    <div class="alert alert-danger" role="alert">
-                            @Model.Result.MessageError
-                    </div>
+        <div class="col text-center">
+            <div class="alert alert-danger" role="alert">
+                @Model.Result.MessageError
+            </div>
+        </div>
+                  
     }
 
 }
 
 
 
-@*</div>*@
+</div>
 

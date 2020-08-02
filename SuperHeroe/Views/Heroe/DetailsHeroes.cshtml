@@ -26,7 +26,10 @@
                    
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="powerstats-tab" data-toggle="tab" href="#powerstats" role="tab" aria-controls="powerstats" aria-selected="true">Power Stats</a>
+                            <a class="nav-link active" id="BIOGRAPHY-tab" data-toggle="tab" href="#BIOGRAPHY" role="tab" aria-controls="BIOGRAPHY" aria-selected="true">BIOGRAPHY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="powerstats-tab" data-toggle="tab" href="#powerstats" role="tab" aria-controls="powerstats" aria-selected="false">Power Stats</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="appearance-tab" data-toggle="tab" href="#appearance" role="tab" aria-controls="appearance" aria-selected="false">Appearance</a>
@@ -41,39 +44,82 @@
                 </div>
             </div>
             <div class="col-md-2">
-              
-                <a asp-controller="Home" asp-action="Index" asp-route-searchString="@Model.Result.ValueSearch" class="profile-edit-btn">Regresar</a>
+
+                <a asp-controller="Home" asp-action="Index" asp-route-searchString="@Model.Result.ValueSearch" class="btn-danger">Regresar</a>
+                @*<input type="submit" asp-controller="Home" value="Regresar" asp-action="Index" asp-route-searchString="@Model.Result.ValueSearch" class="btn-success"/>*@
 
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-work">
-                   
-                    <p><strong>BIOGRAPHY</strong></p>
-                    <a href=""><strong>Full Name: </strong>@Model.Result.Biography.FullName</a><br />
-                    <a href=""><strong>Alter Ego: </strong>@Model.Result.Biography.AlterEgo</a><br />
-                    <a href="">
-                        <strong>Aliases:</strong>
-
-                        @{
-                            string alias = string.Join(", ", Model.Result.Biography.Aliases);
-                            @alias
-                        }
-                    </a><br />
-                    <a href=""><strong>Place of birth: </strong>@Model.Result.Biography.PlaceOfBirth</a><br />
-                    <a href=""><strong>First Appearance: </strong>@Model.Result.Biography.firstappearance</a><br />
-                    <a href=""><strong>Publisher: </strong>@Model.Result.Biography.Publisher</a><br />
-                    <a href=""><strong>Alignment: </strong>@Model.Result.Biography.Alignment</a><br />
-                    @*<a href="">Bootsnipp Profile</a><br />*@
-
-
-
-                </div>
+              
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="powerstats" role="tabpanel" aria-labelledby="powerstats-tab">
+                    <div class="tab-pane fade show active" id="BIOGRAPHY" role="tabpanel" aria-labelledby="BIOGRAPHY-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Full Name:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.FullName </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Alter Ego:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.AlterEgo</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Aliases:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    @{
+                                        string alias = string.Join(", ", Model.Result.Biography.Aliases);
+                                        @alias
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Place of birth:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.PlaceOfBirth</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>First Appearance:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.firstappearance</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Publisher:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.Publisher</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Alignment:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Result.Biography.Alignment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="powerstats" role="tabpanel" aria-labelledby="powerstats-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Intelligence</label>
