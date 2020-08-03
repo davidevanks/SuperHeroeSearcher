@@ -16,7 +16,7 @@ namespace SuperHeroe.Controllers
         private readonly IDetailsRepository _Details;
         private readonly IMemoryCache _memoryCache;
      
-
+        //Inyectamos 
         public HeroeController(IDetailsRepository DetailsRepository, IMemoryCache memoryCache)
         {
             _Details = DetailsRepository;
