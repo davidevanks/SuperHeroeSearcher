@@ -41,12 +41,9 @@ namespace SuperHeroe.Controllers
 
             if (!_memoryCache.TryGetValue(cacheKey,out Task<ResponseSearch> Heroes))
             {
-                if (searchString!=null)
-                {
+               
                     Heroes = _search.Heroes(searchString);
-                }
-                
-
+               
                 var cacheExpirationsOptions =
                     new MemoryCacheEntryOptions
                     {
