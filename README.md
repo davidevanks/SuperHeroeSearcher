@@ -3,6 +3,11 @@
 _Proyecto Web MVC que consume un API (https://www.superheroapi.com/), que nos muestra los super heroes o villanos en su base de datos._
 Puedes ver el proyecto ya terminado y publicado en (https://superheroe20200802215519.azurewebsites.net/).
 
+# Que puedes hacer con la página web?
+_Buscar super heroes o villanos._
+_Ver el detalle de su información._
+_Ver su imágen._
+
 ## Comenzando 🚀
 
 _Para descargar el proyecto, ve al repositorio y en la esquina superior derecha, da click en el boton verde "clone or download", y posterior a eso en las opciones desplegadas, dar click en download ZIP._
