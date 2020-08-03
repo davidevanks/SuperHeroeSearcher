@@ -31,7 +31,7 @@ namespace SuperHeroe.Controllers
         }
 
         [HttpGet("character/{id}")]
-        public IActionResult DetailsHeroes(int Id)
+        public IActionResult Details(int Id)
         {
             var cacheKey = Id;
             //Implementamos el sistema de cache para almacenar valores buscados y mejorar experiencia de usario.
@@ -55,9 +55,10 @@ namespace SuperHeroe.Controllers
             if(Response.Result.Id ==null)
             {
                 ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found!";
-                ViewBag.ErrorHeader = "HEROE O VILLANO NOT FOUND";
+                ViewBag.ErrorHeader = "HERO O VILLIAN NOT FOUND";
                 return View("_NotFound");
             }
+            ViewData["searchString"] = HttpContext.Session.GetString("searchString");
             return View(Response);
         }
 

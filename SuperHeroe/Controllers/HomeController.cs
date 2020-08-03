@@ -18,6 +18,7 @@ namespace SuperHeroe.Controllers
     {
        
         private readonly ISearch _search;
+       
         private readonly IMemoryCache _memoryCache;
      
 
@@ -26,6 +27,7 @@ namespace SuperHeroe.Controllers
          
             _search = SearchRepository;
             _memoryCache = memoryCache;
+           
         }
         
         public IActionResult Index(string searchString)
@@ -34,13 +36,16 @@ namespace SuperHeroe.Controllers
             searchString = searchString == null ? cacheKey = "" : cacheKey=searchString;
             
             ViewData["searchString"] = searchString;
-            //Si el parametro de busqueda no esnulo
-            //if(searchString!=null)
+           
              HttpContext.Session.SetString("searchString", cacheKey);
 
             if (!_memoryCache.TryGetValue(cacheKey,out Task<ResponseSearch> Heroes))
             {
-                Heroes = _search.Heroes(searchString);
+                if (searchString!=null)
+                {
+                    Heroes = _search.Heroes(searchString);
+                }
+                
 
                 var cacheExpirationsOptions =
                     new MemoryCacheEntryOptions
@@ -52,10 +57,12 @@ namespace SuperHeroe.Controllers
 
                 _memoryCache.Set(cacheKey, Heroes, cacheExpirationsOptions);
             }
-           
+            
             return View(Heroes);
         }
 
-    
+       
+
+
     }
 }
