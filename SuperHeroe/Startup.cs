@@ -73,7 +73,7 @@ namespace SuperHeroe
             {
                 endpoints.MapControllerRoute(
                     name: "dfault",
-                pattern: "{controller=Home}/{action=Index}/{id?}"
+                pattern: "{controller=Home}/{action=Home}/{id?}"
               
 
 

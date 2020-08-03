@@ -32,6 +32,13 @@ namespace SuperHeroe.Controllers
         }
 
         [HttpGet]
+        public IActionResult Home()
+        {
+            return View();
+
+        }
+
+            [HttpGet]
         public IActionResult Index(string searchString)
         {
             var cacheKey = "";
