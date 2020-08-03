@@ -72,9 +72,14 @@ namespace SuperHeroe
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-            
+                    name: "dfault",
+                pattern: "{controller=Home}/{action=Index}/{id?}"
+              
+
+
+                );
+             
+
             });
 
 

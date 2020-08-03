@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace SuperHeroe.Data.Repositories
 {
@@ -17,11 +18,11 @@ namespace SuperHeroe.Data.Repositories
         /// </summary>
         /// <param name="ValueSearch"></param>
         /// <returns>Modelo con el response</returns>
-
-       public async Task<ResponseSearch> Heroes(string ValueSearch)
+   
+        public async Task<ResponseSearch> Heroes(string ValueSearch)
         {
             ResponseSearch Heroes = new ResponseSearch();
-
+           
             using (var httpclient = new HttpClient())
             {
 
@@ -34,7 +35,7 @@ namespace SuperHeroe.Data.Repositories
                 }
 
             }
-
+           
             return Heroes;
         }
 

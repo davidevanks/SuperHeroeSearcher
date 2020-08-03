@@ -20,7 +20,7 @@ namespace SuperHeroe.Data.Models
         [JsonProperty("error")]
         public string MessageError { get; set; }
         public string ValueSearch { get; set; }
-        public Task<Heroe> HeroeDetail { get; set; }
+       
 
     }
 }

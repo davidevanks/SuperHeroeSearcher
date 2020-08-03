@@ -15,20 +15,16 @@ namespace SuperHeroe.Controllers
     {
         private readonly IDetailsRepository _Details;
         private readonly IMemoryCache _memoryCache;
-      
+     
 
         public HeroeController(IDetailsRepository DetailsRepository, IMemoryCache memoryCache)
         {
             _Details = DetailsRepository;
             _memoryCache = memoryCache;
+           
 
         }
 
-        public IActionResult Index(string ValueSearch)
-        {
-            return new RedirectToActionResult("Index", "Home", ValueSearch);
-
-        }
 
         [HttpGet("character/{id}")]
         public IActionResult Details(int Id)
